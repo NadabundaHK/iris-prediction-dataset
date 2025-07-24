@@ -8,21 +8,10 @@ from sklearn.datasets import load_iris
 # ------------------ Page Configuration ------------------
 st.set_page_config(page_title="🌸 Iris Classifier", page_icon="🌺", layout="wide")
 
-# save_model.py
-from sklearn.ensemble import RandomForestClassifier
 
-# Load dataset
-iris = load_iris()
-X = iris.data
-y = iris.target
+with open('model.pkl', 'rb') as f:
+    model = pickle.load(f)
 
-# Latih model
-model = RandomForestClassifier()
-model.fit(X, y)
-
-# Simpan model
-with open('model.pkl', 'wb') as f:
-    pickle.dump(model, f)
 
 print("✅ Model berhasil disimpan sebagai 'model.pkl'")
 
