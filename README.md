@@ -55,6 +55,7 @@ If you'd like to deploy this app publicly, you can use:
 - Streamlit Community Cloud
 
 ## 🖼️ App Preview
+🔗 App : https://iris-prediction-dataset-h5oh2jstmdwqz3fazrcg27.streamlit.app/
 
 ## 🙋‍♀️ About the Author
 Hi! I’m Nadabunda Husnul Khotimah — a Data Science enthusiast and Mathematics graduate who loves turning data into meaningful insights and building interactive tools.
@@ -63,4 +64,4 @@ Hi! I’m Nadabunda Husnul Khotimah — a Data Science enthusiast and Mathematic
 💼 LinkedIn : www.linkedin.com/in/nadabunda-husnul-khotimah
 📬 Email: nadabundan@gmail.com
 
-## 🔗 App : https://iris-prediction-dataset-h5oh2jstmdwqz3fazrcg27.streamlit.app/
+
