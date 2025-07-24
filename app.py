@@ -1,88 +1,50 @@
+# app.py
+
 import streamlit as st
-import pandas as pd
-import numpy as np
-import plotly.express as px
-import pickle
-from sklearn.datasets import load_iris
+import streamlit.components.v1 as stc
+from ml_app import run_ml_app
 
-# ------------------ Page Configuration ------------------
-st.set_page_config(page_title="🌸 Iris Classifier", page_icon="🌺", layout="wide")
-
-
-with open('model.pkl', 'rb') as f:
-    model = pickle.load(f)
-
-
-print("✅ Model berhasil disimpan sebagai 'model.pkl'")
-
-# ------------------ Header ------------------
-st.markdown("""
-    <div style='text-align: center'>
-        <img src='https://upload.wikimedia.org/wikipedia/commons/4/41/Iris_versicolor_3.jpg' width='120'/>
-        <h1 style='color: #e91e63;'>🌸 Iris Flower Species Predictor 🌸</h1>
-        <h4 style='color: gray;'>A machine learning web app to classify Iris flower species based on sepal and petal features.</h4>
+# HTML Header
+html_temp = """
+    <div style="background-color:#e91e63;padding:10px;border-radius:10px">
+        <h1 style="color:white;text-align:center;">🌸 Iris Flower Classifier App 🌸</h1>
+        <h4 style="color:white;text-align:center;">Built with Streamlit & Scikit-Learn</h4>
     </div>
-""", unsafe_allow_html=True)
+"""
 
-st.markdown("---")
+# Deskripsi di halaman Home
+desc_temp = """
+### Welcome to the Iris Flower Classification App!
 
-# ------------------ Load Dataset ------------------
-iris = load_iris()
-df_iris = pd.DataFrame(iris.data, columns=iris.feature_names)
-df_iris['species'] = [iris.target_names[i] for i in iris.target]
-target_names = iris.target_names
+This simple web app allows you to classify Iris flower species based on:
+- Sepal length & width
+- Petal length & width
 
-# ------------------ Sidebar: User Input ------------------
-st.sidebar.header("📥 Enter Flower Parameters")
-sepal_length = st.sidebar.slider("Sepal Length (cm)", 4.0, 8.0, 5.4, 0.1)
-sepal_width = st.sidebar.slider("Sepal Width (cm)", 2.0, 4.5, 3.4, 0.1)
-petal_length = st.sidebar.slider("Petal Length (cm)", 1.0, 7.0, 1.3, 0.1)
-petal_width = st.sidebar.slider("Petal Width (cm)", 0.1, 2.5, 0.2, 0.1)
-input_data = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
+#### Features:
+- 🌼 Machine Learning Prediction (Random Forest)
+- 📊 3D Visualization of the Iris dataset
 
-# ------------------ Tabs Layout ------------------
-tab1, tab2 = st.tabs(["🔮 Species Prediction", "📊 Data Visualization"])
+#### Dataset Source:
+- `sklearn.datasets.load_iris()`
+"""
 
-# ------------------ Tab 1: Prediction ------------------
-with tab1:
-    st.subheader("🔍 Prediction Result")
+# Main Function
+def main():
+    st.set_page_config(page_title="Iris App", page_icon="🌸")
+    stc.html(html_temp)
 
-    try:
-        with open('model.pkl', 'rb') as f:
-            model = pickle.load(f)
-        prediction = model.predict(input_data)
-        predicted_class = target_names[prediction[0]]
+    menu = ["Home", "Predict Species"]
+    choice = st.sidebar.selectbox("Menu", menu)
 
-        st.success(f"🌼 Predicted Species: **{predicted_class.capitalize()}**")
-        st.info(f"""
-        **📌 Your Input Details**  
-        • Sepal Length: `{sepal_length}` cm  
-        • Sepal Width: `{sepal_width}` cm  
-        • Petal Length: `{petal_length}` cm  
-        • Petal Width: `{petal_width}` cm
-        """)
-    except FileNotFoundError:
-        st.error("❌ The file `model.pkl` was not found. Please ensure the model is in the same directory.")
+    if choice == "Home":
+        st.subheader("🏠 Home")
+        st.markdown(desc_temp)
+    elif choice == "Predict Species":
+        run_ml_app()
 
-# ------------------ Tab 2: Visualization ------------------
-with tab2:
-    st.subheader("📈 Iris Dataset Distribution (3D View)")
+    # Footer
+    st.markdown("---")
+    st.markdown("<p style='text-align: center;'>Powered by Data & ❤️ – Nadabunda Husnul Khotimah</b></p>", unsafe_allow_html=True)
 
-    fig = px.scatter_3d(
-        df_iris,
-        x='sepal length (cm)',
-        y='sepal width (cm)',
-        z='petal length (cm)',
-        color='species',
-        symbol='species',
-        title="3D Scatter Plot: Sepal and Petal Dimensions",
-        template='plotly_white',
-        height=600
-    )
-    st.plotly_chart(fig, use_container_width=True)
-
-    st.markdown("🔍 **Legend**: Each dot represents an iris flower, colored by its species.")
-
-# ------------------ Footer ------------------
-st.markdown("---")
-st.markdown("<div style='text-align:center'>Created with ❤️ using Streamlit by Nadabunda | Dataset: Iris from UCI ML Repository</div>", unsafe_allow_html=True)
+if __name__ == '__main__':
+    main()
