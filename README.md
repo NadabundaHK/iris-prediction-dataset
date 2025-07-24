@@ -11,7 +11,7 @@ This app uses **Machine Learning** to classify different species of iris flowers
 
 - 🌼 Predict **Iris Setosa**, **Iris Versicolor**, or **Iris Virginica** instantly  
 - 📊 Interactive sliders for Sepal Length, Sepal Width, Petal Length, Petal Width  
-- 🧠 Choose between **Logistic Regression** and **Random Forest** classifier  
+- 🧠 Choose between **Random Forest** classifier  
 - 📈 Visualizations powered by **Plotly**, **Seaborn**, and **Matplotlib**  
 - ✨ Clean and responsive UI built with **Streamlit**
 
