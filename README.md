@@ -52,7 +52,8 @@ Target klasifikasi:
 ✅ Prediksi spesies bunga langsung dari input pengguna  
 ✅ Aplikasi interaktif via Streamlit
 
-##🙋‍♀️ Tentang Saya
+
+## 🙋‍♀️ Tentang Saya
 Nadabunda Husnul Khotimah
 📍 Data Science Enthusiast | Matematika | Streamlit Developer
 🔗 LinkedIn www.linkedin.com/in/nadabunda-husnul-khotimah
